@@ -1,5 +1,6 @@
 package baseball;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -25,7 +26,19 @@ public class Application {
 
 
     public static void main(String[] args) {
-        //TODO: 숫자 야구 게임 구현
+        // 숫자 3개 생성
         BaseBall baseBall = new BaseBall();
+        int inputNumber = 0;
+        // 숫자 입력
+        try{
+            System.out.print("숫자를 입력해주세요 : ");
+            inputNumber = Integer.parseInt(Console.readLine());
+        } catch (IllegalArgumentException e) {
+            return;
+        }
+        System.out.println(inputNumber);
+
+
+
     }
 }
