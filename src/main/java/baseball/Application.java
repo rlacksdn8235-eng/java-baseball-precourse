@@ -12,8 +12,10 @@ public class Application {
     public static class BaseBall {
         private int[] strikeNumber = new int[3];
 
-        private static boolean checkNumber(String number) {
-            return true;
+        // 숫자 판별 로직
+        private static String checkNumber(int inputNumber) {
+
+            return "";
         }
 
         // 생성시 1~9 랜덤 생성해서 집어넣음
@@ -24,18 +26,24 @@ public class Application {
         }
     }
 
+    public static boolean checkIsNumber(String inputNumber) {
+        try {
+            Integer.parseInt(inputNumber);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
 
     public static void main(String[] args) {
         // 숫자 3개 생성
         BaseBall baseBall = new BaseBall();
-        int inputNumber = 0;
+        String inputNumber = "";
         // 숫자 입력
-        try{
-            System.out.print("숫자를 입력해주세요 : ");
-            inputNumber = Integer.parseInt(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            return;
-        }
+        System.out.print("숫자를 입력해주세요 : ");
+        inputNumber = Console.readLine();
+        if(!checkIsNumber(inputNumber)) return;
+
         System.out.println(inputNumber);
 
 
