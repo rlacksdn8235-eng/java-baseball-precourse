@@ -14,3 +14,8 @@ BaseBall >> 검증하는 메서드, strikeNumber 변수
 
 camp.nextstep.edu.missionutils > Randoms > pickNumberInRange()
 amp.nextstep.edu.missionutils.Console > readLine()
+
+
+256
+
+625
