@@ -66,11 +66,22 @@ public class Application {
     }
 
     public static void checkIsCorrectNumber(String inputNumber) {
-        try {
-            Integer.parseInt(inputNumber);
-        } catch (IllegalArgumentException e) {
+        if (isNotNumber(inputNumber) || isNotCorrectLength(inputNumber)) {
             throw new IllegalArgumentException("잘못된 값 입력");
         }
+    }
+
+    private static boolean isNotNumber(String inputNumber) {
+        try {
+            Integer.parseInt(inputNumber);
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+    private static boolean isNotCorrectLength(String inputNumber) {
+        return inputNumber.length() != 3;
     }
 
     public static void restart(String inputNumber) {
