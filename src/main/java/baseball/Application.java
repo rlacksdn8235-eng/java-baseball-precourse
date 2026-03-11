@@ -45,7 +45,7 @@ public class Application {
             return ball + "볼 " + strike + "스트라이크";
         }
 
-        // 스트라이크 판별 로직(숫자가 서로 같을때)
+        // 공 판별 로직
         private void isStrikeOrBall(int index, String inputNumbers) {
             int[] inputNumber = Arrays.stream(inputNumbers.split(""))
                     .mapToInt(Integer::parseInt)
@@ -58,7 +58,10 @@ public class Application {
             }
         }
 
-        // 볼 판별 로직(숫자의 위치가 다르지만 같은게 존재할때)
+        private void resetBallStrike() {
+            this.ball = 0;
+            this.strike = 0;
+        }
 
     }
 
@@ -70,19 +73,34 @@ public class Application {
         }
     }
 
+    public static void restart(String inputNumber) {
+        if (inputNumber.equals("1")) {
+            BASEBALL = new BaseBall();
+            BASEBALL.resetBallStrike();
+        }
+    }
+
+    // 숫자 3개 생성
+    static BaseBall BASEBALL = new BaseBall();
+
     public static void main(String[] args) {
         String inputNumbers = "";
 
-        // 숫자 3개 생성
-        BaseBall baseBall = new BaseBall();
+        while (BASEBALL.strike != 3) {
+            BASEBALL.resetBallStrike();
+            // 숫자 입력
+            System.out.print("숫자를 입력해주세요 : ");
+            inputNumbers = Console.readLine();
+            checkIsCorrectNumber(inputNumbers);
 
-        // 숫자 입력
-        System.out.print("숫자를 입력해주세요 : ");
-        inputNumbers = Console.readLine();
-        checkIsCorrectNumber(inputNumbers);
-
-        // 숫자 검증
-        System.out.println(baseBall.checkNumber(inputNumbers));
+            // 숫자 검증
+            System.out.println(BASEBALL.checkNumber(inputNumbers));
+            if (BASEBALL.strike == 3) {
+                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+                System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+                restart(Console.readLine());
+            }
+        }
 
 
 
